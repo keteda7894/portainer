@@ -9,3 +9,7 @@ sync:
   - /var/run/docker.sock:/var/run/docker.sock
 forward:
   - 9000:9000
+volumes:
+  - name: portainer-data
+    hostPath:
+      path: /data/portainer
