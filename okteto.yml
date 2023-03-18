@@ -5,7 +5,7 @@ command:
 environment:
   - ADMIN_PASSWORD=poorimontrashcan
   - TZ=America/Vancouver
-volumes:
+sync:
   - /var/run/docker.sock:/var/run/docker.sock
-ports:
+forward:
   - 9000:9000
