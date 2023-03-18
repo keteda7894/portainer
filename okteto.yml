@@ -1,5 +1,3 @@
-No error code :
-
 name: portainer
 image: portainer/portainer-ce:latest
 command:
