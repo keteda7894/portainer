@@ -6,9 +6,10 @@ environment:
   - ADMIN_PASSWORD=poorimontrashcan
   - TZ=America/Vancouver
 sync:
-  - source: /var/run/docker.sock
-    target: /var/run/docker.sock
-  - source: portainer-data
-    target: /data/portainer
+  - "/var/run/docker.sock:/var/run/docker.sock"
 forward:
   - 9000:9000
+volumes:
+  - name: portainer-data
+    hostPath:
+      path: /data/portainer
