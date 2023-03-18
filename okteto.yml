@@ -1,19 +1,15 @@
-services:
-  portainer:
-    image: portainer/portainer-ce:latest
-    command:
-      - -H tcp://0.0.0.0:2375
-    environment:
-      - ADMIN_PASSWORD=poorimontrashcan
-      - TZ=America/Vancouver
-    volumes:
-      - name: portainer-data
-        hostPath:
-          path: /data/portainer
-    ports:
-      - 9000:9000
-    sync:
-      - /var/run/docker.sock:/var/run/docker.sock
-
+name: portainer
+image: portainer/portainer-ce:latest
+command:
+  - -H tcp://0.0.0.0:2375
+environment:
+  - ADMIN_PASSWORD=poorimontrashcan
+  - TZ=America/Vancouver
+sync:
+  - src: /var/run/docker.sock
+    dest: /var/run/docker.sock
+forward:
+  - 9000:9000
 volumes:
-  portainer-data:
+  - name: portainer-data
+    path: /data/portainer
