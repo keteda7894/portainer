@@ -1,0 +1,11 @@
+name: portainer
+image: portainer/portainer-ce:latest
+command:
+  - -H tcp://0.0.0.0:2375
+environment:
+  - ADMIN_PASSWORD=poorimontrashcan
+  - TZ=America/Vancouver
+volumes:
+  - /var/run/docker.sock:/var/run/docker.sock
+ports:
+  - 9000:9000
