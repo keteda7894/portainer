@@ -10,5 +10,4 @@ environment:
   - ADMIN_PASSWORD=poorimontrashcan
 
 sync:
-  - src: ./
-    dest: /app
+  - ./:/app
