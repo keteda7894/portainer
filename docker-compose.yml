@@ -1,8 +1,9 @@
-version: "3"
+version: '3'
 
 services:
   portainer:
     image: portainer/portainer-ce
+    container_name: portainer
     restart: always
     ports:
       - "9000:9000"
@@ -11,6 +12,7 @@ services:
       - portainer_data:/data
     environment:
       - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+      - PATH=$PATH:/bin/sh
 
 volumes:
   portainer_data:
