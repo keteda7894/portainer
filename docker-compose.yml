@@ -1,8 +1,6 @@
-version: '3'
-
 services:
   portainer:
-    image: portainer/portainer-ce
+    image: registry.cloud.okteto.net/keteda7894/portainer-portainer
     container_name: portainer
     restart: always
     ports:
@@ -11,8 +9,8 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer_data:/data
     environment:
-      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
-    command: ["sh", "-c", "sleep 20 && /portainer -H unix:///var/run/docker.sock"]
+      - ADMIN_PASSWORD=poorimontrashcan
+      - PATH=$PATH:/bin/sh
 
 volumes:
   portainer_data:
