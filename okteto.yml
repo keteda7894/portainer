@@ -8,7 +8,14 @@ forward:
 metadata:
   annotations:
     "dev.okteto.com/auto-create-service": "true"
-  frontend:
-    extraEnv:
-      - name: portainer
-        value: ".cloud.okteto.net"
+    "dev.okteto.com/auto-ingress": "true"
+    "dev.okteto.com/launch-editor": "true"
+    "dev.okteto.com/remote-access": "true"
+    "dev.okteto.com/recreate-pod": "true"
+    "dev.okteto.com/translation-source": "/usr/src/app"
+    "dev.okteto.com/translation-target": "/usr/share/nginx/html"
+    "dev.okteto.com/front-end": |
+      name: portainer
+      namespace: $NAMESPACE
+      servicePort: 9000
+      urlTemplate: https://{service}.{namespace}.cloud.okteto.net
