@@ -8,7 +8,6 @@ volumes:
     path: /data
 environment:
   ADMIN_PASSWORD: poorimontrashcan
-
 sync:
-  - source: ./
-    target: /app
+  - local: ./
+    remote: /app
