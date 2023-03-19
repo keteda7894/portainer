@@ -3,5 +3,5 @@ image: portainer/portainer
 command:
   - "-H"
   - "unix:///var/run/docker.sock"
-ports:
+forward:
   - "8080:9000"
