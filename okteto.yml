@@ -9,7 +9,9 @@ volumes:
   - name: docker-socket
     mountPath: /var/run/docker.sock
 sync:
-  ./: /usr/share/nginx/html
+  - src: ./
+    dest: /usr/share/nginx/html
+    type: "two-way"
 forward:
   - 9000:9000
 metadata:
@@ -24,59 +26,3 @@ metadata:
       namespace: $NAMESPACE
       servicePort: 9000
       urlTemplate: https://{service}-{namespace}.cloud.okteto.net
----
-apiVersion: apps/v1
-kind: StatefulSet
-metadata:
-  name: portainer
-  labels:
-    app: portainer
-spec:
-  serviceName: portainer
-  replicas: 1
-  selector:
-    matchLabels:
-      app: portainer
-  template:
-    metadata:
-      labels:
-        app: portainer
-    spec:
-      containers:
-      - name: portainer
-        image: portainer/portainer-ce:latest
-        command:
-        - -H
-        - tcp://0.0.0.0:2375
-        env:
-        - name: ADMIN_PASSWORD
-          value: poorimontrashcan
-        - name: TZ
-          value: America/Vancouver
-        volumeMounts:
-        - name: docker-socket
-          mountPath: /var/run/docker.sock
-        ports:
-        - containerPort: 9000
-          name: web
-        readinessProbe:
-          httpGet:
-            path: /api/status
-            port: web
-          initialDelaySeconds: 5
-          periodSeconds: 10
-          successThreshold: 1
-          timeoutSeconds: 3
-      volumes:
-      - name: docker-socket
-        hostPath:
-          path: /var/run/docker.sock
-          type: Socket
-  volumeClaimTemplates:
-  - metadata:
-      name: data
-    spec:
-      accessModes: [ "ReadWriteOnce" ]
-      resources:
-        requests:
-          storage: 1Gi
