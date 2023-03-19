@@ -9,9 +9,7 @@ volumes:
   - name: docker-socket
     mountPath: /var/run/docker.sock
 sync:
-  - src: ./
-    dest: /usr/share/nginx/html
-    type: "two-way"
+  ./: /usr/share/nginx/html
 forward:
   - 9000:9000
 metadata:
