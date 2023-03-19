@@ -7,4 +7,4 @@ forward:
   - "8080:9000"
 metadata:
   annotations:
-    dev.okteto.com/auto-ingress: "true"
+    "dev.okteto.com/auto-create-service": "true"
