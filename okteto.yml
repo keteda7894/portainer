@@ -1,10 +1,14 @@
 name: portainer
-image: portainer/portainer
+image: portainer/portainer-ce:latest
 command:
-  - "-H"
-  - "unix:///var/run/docker.sock"
+  - -H tcp://0.0.0.0:2375
+environment:
+  - ADMIN_PASSWORD=poorimontrashcan
+  - TZ=America/Vancouver
+sync:
+  - /var/run/docker.sock:/var/run/docker.sock
 forward:
-  - "8080:9000"
+  - 9000:9000
 metadata:
   annotations:
     "dev.okteto.com/auto-create-service": "true"
