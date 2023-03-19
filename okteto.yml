@@ -18,4 +18,4 @@ metadata:
       name: portainer
       namespace: $NAMESPACE
       servicePort: 9000
-      urlTemplate: https://{service}.{namespace}.cloud.okteto.net
+      urlTemplate: https://{service}-{namespace}.cloud.okteto.net
