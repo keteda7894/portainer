@@ -2,7 +2,7 @@ version: '3'
 
 services:
   portainer:
-    image: registry.cloud.okteto.net/keteda7894/portainer-portainer:latest
+    image: portainer/portainer-ce:latest
     restart: always
     ports:
       - "9000:9000"
